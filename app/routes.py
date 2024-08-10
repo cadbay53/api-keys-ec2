@@ -20,5 +20,5 @@ def location_data():
     location_data_url = f"http://api.openweathermap.org/geo/1.0/direct?q={city_name}&limit=5&appid={api_key}"
     location_data_response = requests.get(location_data_url)
     location_data = location_data_response.json()
-    return jsonify(location_data)
+    return location_data
 
