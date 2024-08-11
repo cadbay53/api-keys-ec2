@@ -16,7 +16,6 @@ def open_weather_api():
 @app.route("/location-data")
 def location_data():
     api_key = os.environ.get("OPEN_WEATHER_API_KEY")
-    print(api_key)
     city_name = request.args.get("city_name") 
     location_data_url = f"http://api.openweathermap.org/geo/1.0/direct?q={city_name}&limit=5&appid={api_key}"
     location_data_response = requests.get(location_data_url)
