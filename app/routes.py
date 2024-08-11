@@ -7,10 +7,10 @@ import requests
 def index():
     return "Hello World!"
 
-@app.route("/open-weather-api")
+"""@app.route("/open-weather-api")
 def open_weather_api():
     api_key = os.environ.get("OPEN_WEATHER_API_KEY")
-    return jsonify({"api_key": api_key})
+    return jsonify({"api_key": api_key})"""
 
 
 @app.route("/location-data")
