@@ -12,6 +12,9 @@ def open_weather_api():
     api_key = os.environ.get("OPEN_WEATHER_API_KEY")
     return jsonify({"api_key": api_key})"""
 
+@app.route("/test")
+def test():
+    return "test"
 
 @app.route("/api-location")
 def location_data():
