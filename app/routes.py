@@ -25,3 +25,24 @@ def location_data():
     location_data = location_data_response.json()
     return location_data
 
+@app.route("/api-weather")
+def weather_data():
+    api_key = os.environ.get("OPEN_WEATHER_API_KEY")
+    longitude = request.args.get("lon")
+    latitude = request.args.get("lat")
+    weather_data_url = f"http://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={api_key}&units=metric"
+    weather_data_response = requests.get(weather_data_url)
+    weather_data_json = weather_data_response.json()
+    #print(weather_data_json)
+    clouds = weather_data_json["clouds"]["all"]
+    if (clouds == 100):
+        clouds = "Cloudy"
+    elif (clouds > 50):
+        clouds = "Mostly cloudy"
+    else:
+        clouds="Partly cloudy"
+
+    weather_data = {"temperature": round(weather_data_json["main"]["temp"]),
+                    "feels_like": round(weather_data_json["main"]["feels_like"]),
+                    "clouds": clouds}
+    return jsonify(weather_data)
